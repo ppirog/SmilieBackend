@@ -25,12 +25,15 @@ public class JokeService {
             joke.setDelivery(jokeResponse.getDelivery());
 
             Joke saved = jokeRepository.save(joke);
+            log.info("SAVING IN DATABASE: {}", saved);
+
             return JokeResponse.builder()
                     .setup(saved.getSetup())
                     .delivery(saved.getDelivery())
                     .build();
         }
 
+        log.info("ALREADY IN DATABASE: {}", jokeResponse);
         return jokeResponse;
     }
 }
