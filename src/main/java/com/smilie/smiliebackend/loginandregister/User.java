@@ -1,12 +1,6 @@
 package com.smilie.smiliebackend.loginandregister;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import com.smilie.smiliebackend.joke.model.Joke;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Builder
 @Entity
@@ -28,7 +25,7 @@ import java.util.List;
 @Table(name = "app_user" , indexes = {
         @Index(name = "idx_login", columnList = "login")
 })
-class User implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,6 +37,9 @@ class User implements UserDetails {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @ManyToMany(mappedBy = "likedByUsers")
+    private Set<Joke> likedJokes = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
