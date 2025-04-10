@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.smilie.smiliebackend.loginandregister.dto.UserRequestDto;
 
-
 @Service
 @AllArgsConstructor
 class LoginAndRegisterMapper {

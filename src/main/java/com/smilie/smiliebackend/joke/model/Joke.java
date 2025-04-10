@@ -3,7 +3,6 @@ package com.smilie.smiliebackend.joke.model;
 import com.smilie.smiliebackend.loginandregister.User;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.HashSet;
 import java.util.Set;
 

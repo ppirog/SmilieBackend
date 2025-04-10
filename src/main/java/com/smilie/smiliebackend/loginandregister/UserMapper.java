@@ -4,7 +4,6 @@ import com.smilie.smiliebackend.loginandregister.dto.UserRequestDto;
 import com.smilie.smiliebackend.loginandregister.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 
-
 @Service
 class UserMapper {
 

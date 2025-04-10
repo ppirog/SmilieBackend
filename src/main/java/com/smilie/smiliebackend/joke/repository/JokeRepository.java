@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface JokeRepository extends JpaRepository<Joke, Long> {
     boolean existsBySetupAndDelivery(String setup, String delivery);
     Optional<Joke> findBySetupAndDelivery(String setup, String delivery);
-
 }

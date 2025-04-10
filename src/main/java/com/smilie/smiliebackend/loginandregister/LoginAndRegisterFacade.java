@@ -7,7 +7,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-
 @Log4j2
 @AllArgsConstructor
 @Component

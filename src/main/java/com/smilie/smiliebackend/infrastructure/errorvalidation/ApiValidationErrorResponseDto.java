@@ -2,7 +2,6 @@ package com.smilie.smiliebackend.infrastructure.errorvalidation;
 
 import lombok.Builder;
 import org.springframework.http.HttpStatus;
-
 import java.util.List;
 
 @Builder
