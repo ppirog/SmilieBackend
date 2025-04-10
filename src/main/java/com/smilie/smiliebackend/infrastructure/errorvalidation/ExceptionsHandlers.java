@@ -50,4 +50,15 @@ public class ExceptionsHandlers {
                 .status(HttpStatus.BAD_REQUEST)
                 .build();
     }
+
+    @ExceptionHandler(JokeNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public UsernameNotFoundExceptionDto handleJokeNotFoundException() {
+        final String notFound = "Joke not found";
+        log.warn(notFound);
+        return UsernameNotFoundExceptionDto.builder()
+                .message(notFound)
+                .build();
+    }
 }
