@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import java.util.List;
 
 @Log4j2
@@ -48,6 +47,28 @@ public class ExceptionsHandlers {
         return ApiValidationErrorResponseDto.builder()
                 .errors(errors)
                 .status(HttpStatus.BAD_REQUEST)
+                .build();
+    }
+
+    @ExceptionHandler(JokeNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public UsernameNotFoundExceptionDto handleJokeNotFoundException() {
+        final String notFound = "Joke not found";
+        log.warn(notFound);
+        return UsernameNotFoundExceptionDto.builder()
+                .message(notFound)
+                .build();
+    }
+
+    @ExceptionHandler(AllJokeLikedException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public UsernameNotFoundExceptionDto allJokeLikedException() {
+        final String notFound = "All joke liked";
+        log.warn(notFound);
+        return UsernameNotFoundExceptionDto.builder()
+                .message(notFound)
                 .build();
     }
 }
