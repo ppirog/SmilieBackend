@@ -1,18 +1,15 @@
 package com.smilie.smiliebackend.joke.controller;
 
-import com.smilie.smiliebackend.joke.model.Joke;
-import com.smilie.smiliebackend.joke.service.JokeService;
 import com.smilie.smiliebackend.joke.response.JokeResponse;
+import com.smilie.smiliebackend.joke.service.JokeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -44,4 +41,21 @@ public class JokeController {
     public int getLikeCount(@PathVariable Long id) {
         return jokeService.getLikes(id);
     }
+
+    @GetMapping("/jokes")
+    public ResponseEntity<List<JokeResponse>> getJokesPaged(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        List<JokeResponse> jokes = jokeService.getJokesSortedByLikesPaged(page, size);
+        return ResponseEntity.ok(jokes);
+    }
+
+    @GetMapping("/random-unliked")
+    public ResponseEntity<JokeResponse> getRandomUnlikedJoke(Principal principal) {
+        String login = principal.getName();
+        JokeResponse joke = jokeService.getRandomUnlikedJoke(login);
+        return ResponseEntity.ok(joke);
+    }
+
 }

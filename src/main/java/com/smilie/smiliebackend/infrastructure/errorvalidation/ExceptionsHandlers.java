@@ -61,4 +61,15 @@ public class ExceptionsHandlers {
                 .message(notFound)
                 .build();
     }
+
+    @ExceptionHandler(AllJokeLikedException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public UsernameNotFoundExceptionDto allJokeLikedException() {
+        final String notFound = "All joke liked";
+        log.warn(notFound);
+        return UsernameNotFoundExceptionDto.builder()
+                .message(notFound)
+                .build();
+    }
 }
