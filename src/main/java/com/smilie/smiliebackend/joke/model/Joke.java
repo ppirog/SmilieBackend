@@ -18,7 +18,7 @@ import java.util.Set;
 })
 public class Joke {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String setup;
     private String delivery;
